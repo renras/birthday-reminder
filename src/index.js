@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import listOfPeople from "./components/listofpeople";
+import PersonInfo from "./components/PersonInfo";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const MyApp = () => {
+  const [people, setPeople] = useState(listOfPeople);
+  const [title, setTitle] = useState("5 birthdays today");
+  const handleClick = () => {
+    setPeople([]);
+    setTitle("0 birthdays today");
+  };
+  const renderPeople = people.map((people) => {
+    return <PersonInfo key={people.key} {...people} />;
+  });
+  return (
+    <main className="bg-info">
+      <section className="birthday-notification border border-light rounded-3 shadow bg-body">
+        <h1>{title}</h1>
+        {renderPeople}
+        <button type="button" className="btn btn-info" onClick={handleClick}>
+          Clear All
+        </button>
+      </section>
+    </main>
+  );
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<MyApp />, document.getElementById("root"));

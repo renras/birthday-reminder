@@ -7,19 +7,17 @@ import PersonInfo from "./components/PersonInfo";
 
 const MyApp = () => {
   const [people, setPeople] = useState(listOfPeople);
-  const [title, setTitle] = useState("5 birthdays today");
   const handleClick = () => {
     setPeople([]);
-    setTitle("0 birthdays today");
   };
-  const renderPeople = people.map((people) => {
-    return <PersonInfo key={people.key} {...people} />;
-  });
+  // const renderPeople = people.map((people) => {
+  //   return <PersonInfo key={people.key} {...people} />;
+  // });
   return (
     <main className="bg-info">
       <section className="birthday-notification border border-light rounded-3 shadow bg-body">
-        <h1>{title}</h1>
-        {renderPeople}
+        <h1>{people.length} birthdays today</h1>
+        <PersonInfo people={people} />
         <button type="button" className="btn btn-info" onClick={handleClick}>
           Clear All
         </button>

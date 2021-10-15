@@ -10,9 +10,6 @@ const MyApp = () => {
   const handleClick = () => {
     setPeople([]);
   };
-  // const renderPeople = people.map((people) => {
-  //   return <PersonInfo key={people.key} {...people} />;
-  // });
   return (
     <main className="bg-info">
       <section className="birthday-notification border border-light rounded-3 shadow bg-body">
